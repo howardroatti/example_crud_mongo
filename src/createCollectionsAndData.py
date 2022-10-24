@@ -40,7 +40,7 @@ def insert_many(data:json, collection:str):
 def extract_and_insert():
     oracle = OracleQueries()
     oracle.connect()
-    sql = "select * from {table}"
+    sql = "select * from labdatabase.{table}"
     for collection in LIST_OF_COLLECTIONS:
         df = oracle.sqlToDataFrame(sql.format(table=collection))
         if collection == "pedidos":
