@@ -109,7 +109,7 @@ Para executar o sistema basta executar o script Python a seguir:
             # Insere e persiste o novo cliente
             mongo.db["clientes"].insert_one({"cpf": cpf, "nome": nome})
             # Recupera os dados do novo cliente criado transformando em um DataFrame
-            df_cliente = pd.DataFrame(list(self.mongo.db["clientes"].find({"cpf":f"{cpf}"}, {"cpf": 1, "nome": 1, "_id": 0})))
+            df_cliente = pd.DataFrame(list(mongo.db["clientes"].find({"cpf":f"{cpf}"}, {"cpf": 1, "nome": 1, "_id": 0})))
             # Exibe os dados do cliente em formato DataFrame
             print(df_cliente)
 
