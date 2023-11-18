@@ -17,10 +17,10 @@ class OracleQueries:
 
     def __init__(self, can_write:bool=False):
         self.can_write = can_write
-        self.host = "localhost"
+        self.host = "192.168.1.248"
         self.port = 1521
-        self.service_name = 'XEPDB1'
-        self.sid = 'XE'
+        self.service_name = 'FREEPDB1'
+        self.sid = 'FREE'
 
         with open("conexion/passphrase/authentication.oracle", "r") as f:
             self.user, self.passwd = f.read().split(',')            
@@ -29,7 +29,7 @@ class OracleQueries:
         if self.cur:
             self.close()
 
-    def connectionString(self, in_container:bool=False):
+    def connectionString(self, in_container:bool=True):
         '''
         Esse método cria uma string de conexão utilizando os parâmetros necessários
         Parameters:

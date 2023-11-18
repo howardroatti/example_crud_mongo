@@ -2,9 +2,9 @@ import pymongo
 
 class MongoQueries:
     def __init__(self):
-        self.host = "localhost"
+        self.host = "192.168.1.250"
         self.port = 27017
-        self.service_name = 'labdatabase'
+        self.service_name = 'mivie'
 
         with open("conexion/passphrase/authentication.mongo", "r") as f:
             self.user, self.passwd = f.read().split(',')
@@ -14,8 +14,8 @@ class MongoQueries:
             self.close()
 
     def connect(self):
-        self.mongo_client = pymongo.MongoClient(f"mongodb://{self.user}:{self.passwd}@localhost:27017/")
-        self.db = self.mongo_client["labdatabase"]
+        self.mongo_client = pymongo.MongoClient(f"mongodb://{self.user}:{self.passwd}@192.168.1.250:27017/")
+        self.db = self.mongo_client["mivie"]
 
     def close(self):
         self.mongo_client.close()
