@@ -7,6 +7,26 @@ from controller.controller_cliente import Controller_Cliente
 #from controller.controller_pedido import Controller_Pedido
 #from controller.controller_item_pedido import Controller_Item_Pedido
 
+def deseja_continuar_inserir(popcao:int=None):
+        #config.clear_console(1)
+        print(config.MENU_CONTINUA)
+        opcao_continua = int(input("Escolha uma opção [0-1]: "))
+        #config.clear_console(1)
+        while opcao_continua == 1:
+            config.clear_console(1)
+            if popcao == 1:
+                novo = ctrl_cliente.inserir_cliente()
+                config.clear_console(1)
+            elif popcao == 2:
+                novo = ctrl_cliente.inserir_cliente()
+            elif popcao == 3:
+                novo = ctrl_cliente.inserir_cliente() 
+            #config.clear_console(1)
+            print(config.MENU_CONTINUA)
+            opcao_continua = int(input("Escolha uma opção [0-1]: "))
+        #config.clear_console(1)
+
+
 tela_inicial = SplashScreen()
 #relatorio = Relatorio()
 #ctrl_produto = Controller_Produto()
@@ -33,10 +53,28 @@ ctrl_cliente = Controller_Cliente()
 def inserir(opcao_inserir:int=0):
 
     if opcao_inserir == 1:
-        a=1                               
-        #novo_produto = ctrl_produto.inserir_produto()
-    elif opcao_inserir == 2:
         novo_cliente = ctrl_cliente.inserir_cliente()
+        config.clear_console(1)
+        deseja_continuar_inserir(1)
+        '''config.clear_console(1)
+        print(config.MENU_CONTINUA)
+        opcao_continua = int(input("Escolha uma opção [0-1]: "))
+        #config.clear_console(1)
+        while opcao_continua == 1:
+            config.clear_console(1)
+            novo_cliente = ctrl_cliente.inserir_cliente()
+            #config.clear_console()
+            print(config.MENU_CONTINUA)
+            opcao_continua = int(input("Escolha uma opção [0-1]: "))
+        #config.clear_console(1)'''
+
+        
+        '''config.clear_console()
+        print(tela_inicial.get_updated_screen())
+        config.clear_console()'''
+    
+    elif opcao_inserir == 2:
+        a=1
     elif opcao_inserir == 3:
         a=1
         #novo_fornecedor = ctrl_fornecedor.inserir_fornecedor()
@@ -105,13 +143,11 @@ def run():
         elif opcao == 2: # Inserir Novos Registros
             
             print(config.MENU_ENTIDADES)
-            opcao_inserir = int(input("Escolha uma opção [1-5]: "))
+            opcao_inserir = int(input("Escolha uma opção [1-3]: "))
             config.clear_console(1)
 
             inserir(opcao_inserir=opcao_inserir)
 
-            config.clear_console()
-            print(tela_inicial.get_updated_screen())
             config.clear_console()
 
         elif opcao == 3: # Atualizar Registros

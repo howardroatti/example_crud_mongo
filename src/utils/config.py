@@ -1,7 +1,5 @@
-import pymongo
 from conexion.mongo_queries import MongoQueries
 import pandas as pd
-
 
 MENU_PRINCIPAL = """Menu Principal
 1 - Relatórios
@@ -12,21 +10,23 @@ MENU_PRINCIPAL = """Menu Principal
 """
 
 MENU_RELATORIOS = """Relatórios
-1 - Relatório de Pedidos por Fornecedores
-2 - Relatório de Pedidos
-3 - Relatório de Produtos
-4 - Relatório de Clientes
-5 - Relatório de Fornecedores
-6 - Relatório de Itens de Pedidos
+1 - Relatório de Clientes
+2 - Relatório de Contas
+3 - Relatório de Movimentações Gerais das Contas
+4 - Relatório de Tipo de Contas Por Cliente
+5 - Relatório de Visão Geral de Contas
 0 - Sair
 """
 
 MENU_ENTIDADES = """Entidades
-1 - PRODUTOS
-2 - CLIENTES
-3 - FORNECEDORES
-4 - PEDIDOS
-5 - ITENS DE PEDIDOS
+1 - CLIENTES
+2 - CONTAS
+3 - MOVIMENTAÇÃO
+"""
+
+MENU_CONTINUA = """Deseja continuar?
+0 - NÃO
+1 - SIM
 """
 
 # Consulta de contagem de registros por tabela
