@@ -7,11 +7,10 @@ from controller.controller_cliente import Controller_Cliente
 #from controller.controller_pedido import Controller_Pedido
 #from controller.controller_item_pedido import Controller_Item_Pedido
 
+#Solicita resposta do usuário se continua inserindo
 def deseja_continuar_inserir(popcao:int=None):
-        #config.clear_console(1)
         print(config.MENU_CONTINUA)
         opcao_continua = int(input("Escolha uma opção [0-1]: "))
-        #config.clear_console(1)
         while opcao_continua == 1:
             config.clear_console(1)
             if popcao == 1:
@@ -21,10 +20,40 @@ def deseja_continuar_inserir(popcao:int=None):
                 novo = ctrl_cliente.inserir_cliente()
             elif popcao == 3:
                 novo = ctrl_cliente.inserir_cliente() 
-            #config.clear_console(1)
             print(config.MENU_CONTINUA)
             opcao_continua = int(input("Escolha uma opção [0-1]: "))
-        #config.clear_console(1)
+
+#Solicita resposta do usuário se continua inserindo
+def deseja_continuar_atualizar(popcao:int=None):
+        print(config.MENU_CONTINUA)
+        opcao_continua = int(input("Escolha uma opção [0-1]: "))
+        while opcao_continua == 1:
+            config.clear_console(1)
+            if popcao == 1:
+                novo = ctrl_cliente.atualizar_cliente()
+                config.clear_console(1)
+            elif popcao == 2:
+                novo = ctrl_cliente.inserir_cliente()
+            elif popcao == 3:
+                novo = ctrl_cliente.inserir_cliente() 
+            print(config.MENU_CONTINUA)
+            opcao_continua = int(input("Escolha uma opção [0-1]: "))
+
+#Solicita resposta do usuário se continua inserindo
+def deseja_continuar_excluir(popcao:int=None):
+        print(config.MENU_CONTINUA)
+        opcao_continua = int(input("Escolha uma opção [0-1]: "))
+        while opcao_continua == 1:
+            config.clear_console(1)
+            if popcao == 1:
+                novo = ctrl_cliente.inserir_cliente()
+                config.clear_console(1)
+            elif popcao == 2:
+                novo = ctrl_cliente.inserir_cliente()
+            elif popcao == 3:
+                novo = ctrl_cliente.inserir_cliente() 
+            print(config.MENU_CONTINUA)
+            opcao_continua = int(input("Escolha uma opção [0-1]: "))
 
 
 tela_inicial = SplashScreen()
@@ -85,12 +114,15 @@ def inserir(opcao_inserir:int=0):
         a=1
         #novo_item_pedido = ctrl_item_pedido.inserir_item_pedido()
 
-'''def atualizar(opcao_atualizar:int=0):
+def atualizar(opcao_atualizar:int=0):
 
     if opcao_atualizar == 1:
-        relatorio.get_relatorio_produtos()
-        produto_atualizado = ctrl_produto.atualizar_produto()
-    elif opcao_atualizar == 2:
+        #relatorio.get_relatorio_clientes()
+        cliente_atualizado = ctrl_cliente.atualizar_cliente()
+        config.clear_console(1)
+        deseja_continuar_atualizar(1)
+
+'''    elif opcao_atualizar == 2:
         relatorio.get_relatorio_clientes()
         cliente_atualizado = ctrl_cliente.atualizar_cliente()
     elif opcao_atualizar == 3:
@@ -156,7 +188,7 @@ def run():
             opcao_atualizar = int(input("Escolha uma opção [1-5]: "))
             config.clear_console(1)
 
-            #atualizar(opcao_atualizar=opcao_atualizar)
+            atualizar(opcao_atualizar=opcao_atualizar)
 
             config.clear_console()
 

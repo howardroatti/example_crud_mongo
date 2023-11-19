@@ -44,27 +44,28 @@ class Controller_Cliente:
 
     def atualizar_cliente(self) -> Cliente:
         # Cria uma nova conexão com o banco que permite alteração
-        oracle = OracleQueries(can_write=True)
-        oracle.connect()
+        self.mongo.connect()
 
         # Solicita ao usuário o código do cliente a ser alterado
         cpf = int(input("CPF do cliente que deseja alterar o nome: "))
 
         # Verifica se o cliente existe na base de dados
-        if not self.verifica_existencia_cliente(oracle, cpf):
+        if not self.verifica_existencia_cliente(cpf):
             # Solicita a nova descrição do cliente
             novo_nome = input("Nome (Novo): ")
             # Atualiza o nome do cliente existente
-            oracle.write(f"update clientes set nome = '{novo_nome}' where cpf = {cpf}")
+            self.mongo.db["clientes"].update_one({"cpf": f"{cpf}"}, {"$set": {"nome": novo_nome}})
             # Recupera os dados do novo cliente criado transformando em um DataFrame
-            df_cliente = oracle.sqlToDataFrame(f"select id,nome,cpf,endereco,telefone from clientes where cpf = {cpf}")
+            df_cliente = self.recupera_cliente(cpf)
             # Cria um novo objeto cliente
             cliente_atualizado = Cliente(df_cliente.id.values[0], df_cliente.cpf.values[0], df_cliente.nome.values[0], df_cliente.endereco.values[0], df_cliente.telefone.values[0])
-            # Exibe os atributos do novo cliente
+             # Exibe os atributos do novo cliente
             print(cliente_atualizado.to_string())
+            self.mongo.close()
             # Retorna o objeto cliente_atualizado para utilização posterior, caso necessário
             return cliente_atualizado
         else:
+            self.mongo.close()
             print(f"O CPF {cpf} não existe.")
             return None
 
