@@ -26,7 +26,9 @@ class Controller_Cliente:
             # Insere e persiste o novo cliente
             #oracle.write(f"insert into clientes(id,nome,cpf,endereco,telefone) values (seq_clientes_id.nextval,'{nome}', '{cpf}', '{endereco}', '{telefone}')")
             
-            novo_id = self.recupera.recupera_prox_id("clientes")
+            novo_id = int(self.recupera.recupera_prox_id("clientes"))
+            print(type(novo_id))
+
             self.mongo.db["clientes"].insert_one({"id": novo_id, "cpf": cpf, "nome": nome, "endereco": endereco, "telefone": telefone})
             # Recupera os dados do novo cliente criado transformando em um DataFrame
             df_cliente = self.recupera_cliente(cpf)
@@ -99,7 +101,7 @@ class Controller_Cliente:
             self.mongo.connect()
 
         # Recupera os dados do novo cliente criado transformando em um DataFrame
-        df_cliente = pd.DataFrame(list(self.mongo.db["clientes"].find({"cpf":f"{cpf}"}, {"cpf": 1, "nome": 1, "endereco": 1, "telefone": 1, "_id": 0})))
+        df_cliente = pd.DataFrame(list(self.mongo.db["clientes"].find({"cpf":f"{cpf}"}, {"id":1 ,"cpf": 1, "nome": 1, "endereco": 1, "telefone": 1, "_id": 0})))
         
         if external:
             # Fecha a conexão com o Mongo
