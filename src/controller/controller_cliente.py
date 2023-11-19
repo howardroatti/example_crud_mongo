@@ -27,8 +27,7 @@ class Controller_Cliente:
             #oracle.write(f"insert into clientes(id,nome,cpf,endereco,telefone) values (seq_clientes_id.nextval,'{nome}', '{cpf}', '{endereco}', '{telefone}')")
             
             novo_id = int(self.recupera.recupera_prox_id("clientes"))
-            print(type(novo_id))
-
+            
             self.mongo.db["clientes"].insert_one({"id": novo_id, "cpf": cpf, "nome": nome, "endereco": endereco, "telefone": telefone})
             # Recupera os dados do novo cliente criado transformando em um DataFrame
             df_cliente = self.recupera_cliente(cpf)
