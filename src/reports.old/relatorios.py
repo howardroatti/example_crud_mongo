@@ -207,10 +207,8 @@ class Relatorio:
         mongo.connect()
         # Recupera os dados transformando em um DataFrame
         query_result = mongo.db["clientes"].find({}, 
-                                                 {"nome": 1,
-                                                  "cpf": 1,
-                                                  "endereco": 1,
-                                                  "telefone": 1,  
+                                                 {"cpf": 1, 
+                                                  "nome": 1, 
                                                   "_id": 0
                                                  }).sort("nome", ASCENDING)
         df_cliente = pd.DataFrame(list(query_result))

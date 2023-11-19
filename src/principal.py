@@ -23,13 +23,14 @@ def deseja_continuar_inserir(popcao:int=None):
             print(config.MENU_CONTINUA)
             opcao_continua = int(input("Escolha uma opção [0-1]: "))
 
-#Solicita resposta do usuário se continua inserindo
+#Solicita resposta do usuário se continua atualizando
 def deseja_continuar_atualizar(popcao:int=None):
         print(config.MENU_CONTINUA)
         opcao_continua = int(input("Escolha uma opção [0-1]: "))
         while opcao_continua == 1:
             config.clear_console(1)
             if popcao == 1:
+                relatorio.get_relatorio_clientes()
                 novo = ctrl_cliente.atualizar_cliente()
                 config.clear_console(1)
             elif popcao == 2:
@@ -39,13 +40,14 @@ def deseja_continuar_atualizar(popcao:int=None):
             print(config.MENU_CONTINUA)
             opcao_continua = int(input("Escolha uma opção [0-1]: "))
 
-#Solicita resposta do usuário se continua inserindo
+#Solicita resposta do usuário se continua excluindo
 def deseja_continuar_excluir(popcao:int=None):
         print(config.MENU_CONTINUA)
         opcao_continua = int(input("Escolha uma opção [0-1]: "))
         while opcao_continua == 1:
             config.clear_console(1)
             if popcao == 1:
+                relatorio.get_relatorio_clientes()
                 novo = ctrl_cliente.excluir_cliente()
                 config.clear_console(3)
             elif popcao == 2:
@@ -57,18 +59,18 @@ def deseja_continuar_excluir(popcao:int=None):
 
 
 tela_inicial = SplashScreen()
-#relatorio = Relatorio()
+relatorio = Relatorio()
 #ctrl_produto = Controller_Produto()
 ctrl_cliente = Controller_Cliente()
 #ctrl_fornecedor = Controller_Fornecedor()
 #ctrl_pedido = Controller_Pedido()
 #ctrl_item_pedido = Controller_Item_Pedido()
 
-'''def reports(opcao_relatorio:int=0):
+def reports(opcao_relatorio:int=0):
 
     if opcao_relatorio == 1:
-        relatorio.get_relatorio_pedidos_por_fornecedor()            
-    elif opcao_relatorio == 2:
+        relatorio.get_relatorio_clientes()            
+'''    elif opcao_relatorio == 2:
         relatorio.get_relatorio_pedidos()
     elif opcao_relatorio == 3:
         relatorio.get_relatorio_produtos()
@@ -85,23 +87,6 @@ def inserir(opcao_inserir:int=0):
         novo_cliente = ctrl_cliente.inserir_cliente()
         config.clear_console(1)
         deseja_continuar_inserir(1)
-        '''config.clear_console(1)
-        print(config.MENU_CONTINUA)
-        opcao_continua = int(input("Escolha uma opção [0-1]: "))
-        #config.clear_console(1)
-        while opcao_continua == 1:
-            config.clear_console(1)
-            novo_cliente = ctrl_cliente.inserir_cliente()
-            #config.clear_console()
-            print(config.MENU_CONTINUA)
-            opcao_continua = int(input("Escolha uma opção [0-1]: "))
-        #config.clear_console(1)'''
-
-        
-        '''config.clear_console()
-        print(tela_inicial.get_updated_screen())
-        config.clear_console()'''
-    
     elif opcao_inserir == 2:
         a=1
     elif opcao_inserir == 3:
@@ -117,7 +102,7 @@ def inserir(opcao_inserir:int=0):
 def atualizar(opcao_atualizar:int=0):
 
     if opcao_atualizar == 1:
-        #relatorio.get_relatorio_clientes()
+        relatorio.get_relatorio_clientes()
         cliente_atualizado = ctrl_cliente.atualizar_cliente()
         config.clear_console(1)
         deseja_continuar_atualizar(1)
@@ -138,7 +123,7 @@ def atualizar(opcao_atualizar:int=0):
 def excluir(opcao_excluir:int=0):
 
     if opcao_excluir == 1:
-        #relatorio.get_relatorio_clientes()
+        relatorio.get_relatorio_clientes()
         ctrl_cliente.excluir_cliente()
         config.clear_console(1)
         deseja_continuar_excluir(1)
@@ -171,7 +156,7 @@ def run():
             opcao_relatorio = int(input("Escolha uma opção [0-6]: "))
             config.clear_console(1)
 
-            #reports(opcao_relatorio)
+            reports(opcao_relatorio)
 
             config.clear_console(1)
 
@@ -184,6 +169,9 @@ def run():
             inserir(opcao_inserir=opcao_inserir)
 
             config.clear_console()
+            print(tela_inicial.get_updated_screen())
+            config.clear_console()
+
 
         elif opcao == 3: # Atualizar Registros
 

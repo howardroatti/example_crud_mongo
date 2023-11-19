@@ -21,7 +21,7 @@ class Controller_Cliente:
             # Solicita Endereço
             endereco = input("Endereço: ")
             # Solicita Telefone
-            telefone = input("telefone: ")
+            telefone = input("Telefone: ")
 
             # Insere e persiste o novo cliente
             #oracle.write(f"insert into clientes(id,nome,cpf,endereco,telefone) values (seq_clientes_id.nextval,'{nome}', '{cpf}', '{endereco}', '{telefone}')")
