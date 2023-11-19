@@ -46,8 +46,8 @@ def deseja_continuar_excluir(popcao:int=None):
         while opcao_continua == 1:
             config.clear_console(1)
             if popcao == 1:
-                novo = ctrl_cliente.inserir_cliente()
-                config.clear_console(1)
+                novo = ctrl_cliente.excluir_cliente()
+                config.clear_console(3)
             elif popcao == 2:
                 novo = ctrl_cliente.inserir_cliente()
             elif popcao == 3:
@@ -135,12 +135,15 @@ def atualizar(opcao_atualizar:int=0):
         relatorio.get_relatorio_itens_pedidos()
         item_pedido_atualizado = ctrl_item_pedido.atualizar_item_pedido()'''
 
-'''def excluir(opcao_excluir:int=0):
+def excluir(opcao_excluir:int=0):
 
     if opcao_excluir == 1:
-        relatorio.get_relatorio_produtos()
-        ctrl_produto.excluir_produto()
-    elif opcao_excluir == 2:                
+        #relatorio.get_relatorio_clientes()
+        ctrl_cliente.excluir_cliente()
+        config.clear_console(1)
+        deseja_continuar_excluir(1)
+
+'''    elif opcao_excluir == 2:                
         relatorio.get_relatorio_clientes()
         ctrl_cliente.excluir_cliente()
     elif opcao_excluir == 3:                
@@ -198,7 +201,7 @@ def run():
             opcao_excluir = int(input("Escolha uma opção [1-5]: "))
             config.clear_console(1)
 
-            #excluir(opcao_excluir=opcao_excluir)
+            excluir(opcao_excluir=opcao_excluir)
 
             config.clear_console()
             print(tela_inicial.get_updated_screen())

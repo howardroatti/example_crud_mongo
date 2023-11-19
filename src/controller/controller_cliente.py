@@ -71,24 +71,25 @@ class Controller_Cliente:
 
     def excluir_cliente(self):
         # Cria uma nova conexão com o banco que permite alteração
-        oracle = OracleQueries(can_write=True)
-        oracle.connect()
+        self.mongo.connect()
 
         # Solicita ao usuário o CPF do Cliente a ser alterado
         cpf = int(input("CPF do Cliente que irá excluir: "))        
 
         # Verifica se o cliente existe na base de dados
-        if not self.verifica_existencia_cliente(oracle, cpf):            
+        if not self.verifica_existencia_cliente(cpf):            
             # Recupera os dados do novo cliente criado transformando em um DataFrame
-            df_cliente = oracle.sqlToDataFrame(f"select id,nome,cpf,endereco,telefone from clientes where cpf = {cpf}")
+            df_cliente = self.recupera_cliente(cpf)
             # Revome o cliente da tabela
-            oracle.write(f"delete from clientes where cpf = {cpf}")            
+            self.mongo.db["clientes"].delete_one({"cpf":f"{cpf}"})
             # Cria um novo objeto Cliente para informar que foi removido
             cliente_excluido = Cliente(df_cliente.id.values[0], df_cliente.cpf.values[0], df_cliente.nome.values[0], df_cliente.endereco.values[0], df_cliente.telefone.values[0])
+            self.mongo.close()
             # Exibe os atributos do cliente excluído
             print("Cliente Removido com Sucesso!")
             print(cliente_excluido.to_string())
         else:
+            self.mongo.close()
             print(f"O CPF {cpf} não existe.")
 
     def verifica_existencia_cliente(self,  cpf:str=None) -> bool:
