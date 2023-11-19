@@ -1,3 +1,8 @@
+import pymongo
+from conexion.mongo_queries import MongoQueries
+import pandas as pd
+
+
 MENU_PRINCIPAL = """Menu Principal
 1 - Relatórios
 2 - Inserir Registros
@@ -26,9 +31,6 @@ MENU_ENTIDADES = """Entidades
 
 # Consulta de contagem de registros por tabela
 def query_count(collection_name):
-   from conexion.mongo_queries import MongoQueries
-   import pandas as pd
-
    mongo = MongoQueries()
    mongo.connect()
 
@@ -47,3 +49,23 @@ def clear_console(wait_time:int=3):
     from time import sleep
     sleep(wait_time)
     os.system("clear")
+
+class Recupera:
+    def __init__(self):
+        self.mongo = MongoQueries()
+    
+    def recupera_prox_id(self, pcollection:str=None, external:bool=True) -> int:
+        if external:
+            # Cria uma nova conexão com o banco que permite alteração
+            self.mongo.connect()
+
+        # Recupera próximo id para tabela informada
+        px_id = 0
+        df_px_id = pd.DataFrame(self.mongo.db[pcollection].find().sort("id", -1).limit(1))
+        px_id = df_px_id.id.values[0] + 1
+        
+        if external:
+            # Fecha a conexão com o Mongo
+            self.mongo.close()
+
+        return px_id

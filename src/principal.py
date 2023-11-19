@@ -1,21 +1,21 @@
 from utils import config
 from utils.splash_screen import SplashScreen
 from reports.relatorios import Relatorio
-from controller.controller_produto import Controller_Produto
+#from controller.controller_produto import Controller_Produto
 from controller.controller_cliente import Controller_Cliente
-from controller.controller_fornecedor import Controller_Fornecedor
-from controller.controller_pedido import Controller_Pedido
-from controller.controller_item_pedido import Controller_Item_Pedido
+#from controller.controller_fornecedor import Controller_Fornecedor
+#from controller.controller_pedido import Controller_Pedido
+#from controller.controller_item_pedido import Controller_Item_Pedido
 
 tela_inicial = SplashScreen()
-relatorio = Relatorio()
-ctrl_produto = Controller_Produto()
+#relatorio = Relatorio()
+#ctrl_produto = Controller_Produto()
 ctrl_cliente = Controller_Cliente()
-ctrl_fornecedor = Controller_Fornecedor()
-ctrl_pedido = Controller_Pedido()
-ctrl_item_pedido = Controller_Item_Pedido()
+#ctrl_fornecedor = Controller_Fornecedor()
+#ctrl_pedido = Controller_Pedido()
+#ctrl_item_pedido = Controller_Item_Pedido()
 
-def reports(opcao_relatorio:int=0):
+'''def reports(opcao_relatorio:int=0):
 
     if opcao_relatorio == 1:
         relatorio.get_relatorio_pedidos_por_fornecedor()            
@@ -28,22 +28,26 @@ def reports(opcao_relatorio:int=0):
     elif opcao_relatorio == 5:
         relatorio.get_relatorio_fornecedores()
     elif opcao_relatorio == 6:
-        relatorio.get_relatorio_itens_pedidos()
+        relatorio.get_relatorio_itens_pedidos()'''
 
 def inserir(opcao_inserir:int=0):
 
-    if opcao_inserir == 1:                               
-        novo_produto = ctrl_produto.inserir_produto()
+    if opcao_inserir == 1:
+        a=1                               
+        #novo_produto = ctrl_produto.inserir_produto()
     elif opcao_inserir == 2:
         novo_cliente = ctrl_cliente.inserir_cliente()
     elif opcao_inserir == 3:
-        novo_fornecedor = ctrl_fornecedor.inserir_fornecedor()
+        a=1
+        #novo_fornecedor = ctrl_fornecedor.inserir_fornecedor()
     elif opcao_inserir == 4:
-        novo_pedido = ctrl_pedido.inserir_pedido()
+        a=1
+        #novo_pedido = ctrl_pedido.inserir_pedido()
     elif opcao_inserir == 5:
-        novo_item_pedido = ctrl_item_pedido.inserir_item_pedido()
+        a=1
+        #novo_item_pedido = ctrl_item_pedido.inserir_item_pedido()
 
-def atualizar(opcao_atualizar:int=0):
+'''def atualizar(opcao_atualizar:int=0):
 
     if opcao_atualizar == 1:
         relatorio.get_relatorio_produtos()
@@ -59,9 +63,9 @@ def atualizar(opcao_atualizar:int=0):
         pedido_atualizado = ctrl_pedido.atualizar_pedido()
     elif opcao_atualizar == 5:
         relatorio.get_relatorio_itens_pedidos()
-        item_pedido_atualizado = ctrl_item_pedido.atualizar_item_pedido()
+        item_pedido_atualizado = ctrl_item_pedido.atualizar_item_pedido()'''
 
-def excluir(opcao_excluir:int=0):
+'''def excluir(opcao_excluir:int=0):
 
     if opcao_excluir == 1:
         relatorio.get_relatorio_produtos()
@@ -77,7 +81,7 @@ def excluir(opcao_excluir:int=0):
         ctrl_pedido.excluir_pedido()
     elif opcao_excluir == 5:
         relatorio.get_relatorio_itens_pedidos()
-        ctrl_item_pedido.excluir_item_pedido()
+        ctrl_item_pedido.excluir_item_pedido()'''
 
 def run():
     print(tela_inicial.get_updated_screen())
@@ -94,7 +98,7 @@ def run():
             opcao_relatorio = int(input("Escolha uma opção [0-6]: "))
             config.clear_console(1)
 
-            reports(opcao_relatorio)
+            #reports(opcao_relatorio)
 
             config.clear_console(1)
 
@@ -116,7 +120,7 @@ def run():
             opcao_atualizar = int(input("Escolha uma opção [1-5]: "))
             config.clear_console(1)
 
-            atualizar(opcao_atualizar=opcao_atualizar)
+            #atualizar(opcao_atualizar=opcao_atualizar)
 
             config.clear_console()
 
@@ -126,7 +130,7 @@ def run():
             opcao_excluir = int(input("Escolha uma opção [1-5]: "))
             config.clear_console(1)
 
-            excluir(opcao_excluir=opcao_excluir)
+            #excluir(opcao_excluir=opcao_excluir)
 
             config.clear_console()
             print(tela_inicial.get_updated_screen())
