@@ -1,4 +1,5 @@
 import pymongo
+from urllib.parse import quote_plus
 
 class MongoQueries:
     def __init__(self):
@@ -14,7 +15,7 @@ class MongoQueries:
             self.close()
 
     def connect(self):
-        self.mongo_client = pymongo.MongoClient(f"mongodb://{self.user}:{self.passwd}@localhost:27017/")
+        self.mongo_client = pymongo.MongoClient(f"mongodb://{self.user}:{quote_plus(self.passwd)}@localhost:27017/")
         self.db = self.mongo_client["labdatabase"]
 
     def close(self):
